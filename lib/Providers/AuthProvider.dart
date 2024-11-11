@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:login_signup/Models/UserModel.dart';
 import '../Services/AuthService.dart';
-
+import '../Models/UserModel.dart';
 
 class AuthProvider extends ChangeNotifier {
   bool isLoading = false;
   UserModel? user;
 
+
   Future<void> handleLogin(String email, String password) async {
+    if (email.isEmpty || email == null || password.isEmpty || password == null) {
+      print('Email or Password cannot be empty');
+      return;
+    }
+
     isLoading = true;
     notifyListeners();
 
@@ -24,6 +29,11 @@ class AuthProvider extends ChangeNotifier {
   }
 
   Future<void> handleSignUp(String email, String password) async {
+    if (email.isEmpty || email == null || password.isEmpty || password == null) {
+      print('Email or Password cannot be empty');
+      return;
+    }
+
     isLoading = true;
     notifyListeners();
 
